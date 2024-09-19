@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Bootstrap x jQuery</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        #display , #display2 , #display3 , #display4 , #display5 , #display6 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 24px;
+            line-height: 1.5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            min-height: 400px;
+            white-space: pre;
+        }
+
+        .button {
+            background-color: blue; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body>
+<div class="container-fluid"></div>
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center bg-primary text-white py-3">Kanban View</h1>
+        </div>
+    </div>
+</div>   
+
+<div class="container-fluid"></div>
+    <div class="row">
+        <div class="col-2">
+            <form>
+                <div>
+                    <div class="container-fluid">
+                        <h6 class="text-center bg-secondary text-white py-3">Pending</h6>
+                        <div id="display" type="button" ></div>
+                        <button class="btn btn-outline-secondary class-erase">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form></form>
+                <div>
+                    <div class="container-fluid">
+                        <h6 class="text-center bg-secondary text-white py-3">Planning</h6>
+                        <div id="display2" type="button" height="100"></div>
+                        <button class="btn btn-outline-secondary class-erase">Delete</button>
+                    </div>
+                   
+                </div>
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form></form>
+                <div>
+                    <div class="container-fluid">
+                        <h6 class="text-center bg-secondary text-white py-3">Design</h6>
+                        <div id="display3" type="button" height="100"></div>
+                        <button class="btn btn-outline-secondary class-erase">Delete</button>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form></form>
+                <div>
+                    <div class="container-fluid">
+                        <h6 class="text-center bg-secondary text-white py-3">Development</h6>
+                        <div id="display4" type="button" height="100"></div>
+                        <button class="btn btn-outline-secondary class-erase">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form></form>
+                <div>
+                    <div class="container-fluid">
+                        <h6 class="text-center bg-secondary text-white py-3">Testing</h6>
+                        <div id="display5" type="button" height="100"></div>
+                        <button class="btn btn-outline-secondary class-erase">Delete</button>
+                    </div>
+                
+                </div>
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form></form>
+                <div>
+                    <div class="container-fluid">
+                        <h6 class="text-center bg-secondary text-white py-3">Resolved</h6>
+                        <div id="display6" type="button" height="100"></div>
+                        <button class="btn btn-outline-secondary class-erase">Delete</button>
+                    </div>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12 text-center mt-4">
+            <footer>Soal ~ 1</footer>
+            <footer>  </footer>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-4">
+            <h6 class="text bg-light text-white py-3"></h6>
+            <h2 class="text text-center bg-primary text-white py-3">Kanban View</h2>
+        </div>
+    </div>
+
+    <div class="col-1">
+            <label for="Tugas">Tugas</label>
+    </div>
+    <div class="col-2">
+        <input type="text" id="Tugas" class="form-control" value="5p-Where">
+    </div>
+
+    <div class="col-1"></div>
+        <h6 class="text bg-light text-white py-3"></h6>
+    </div>
+    
+    <div class="col-1">
+            <label for="Status">Status</label>
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <select id="Status" class="form-control">
+                <option value="Pending">Pending</option>
+                <option value="Planning">Planning</option>
+                <option value="Design">Design</option>
+                <option value="Development">Development</option>
+                <option value="Testing">Testing</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+        </div>
+        <button class="btn btn-outline-secondary class-tombol">Tambah</button>
+    </form>
+    </div>
+
+    <div class="row"></div>
+        <div class="col-12 text-center mt-4">
+            <footer>Soal ~ 2 & 3 & 4 </footer>
+            <footer>  </footer>
+        </div>
+    </div>
+
+</div> 
+
+<script>
+
+    $(document).ready(function() {
+
+
+        $(".class-erase").click(function() {
+            let type = $('#Status').val();
+            let displayHtml = '';
+            if (type === 'Pending') {
+                $('#display').html(displayHtml);
+                $('#display').html(button)
+            }
+            if (type === 'Planning') {
+                $('#display2').html(displayHtml);
+            }
+            if (type === 'Design') {
+                $('#display3').html(displayHtml);
+            }
+            if (type === 'Development') {
+                $('#display4').html(displayHtml);
+            }
+            if (type === 'Testing') {
+                $('#display5').html(displayHtml);
+            }
+            if (type === 'Resolved') {
+                $('#display6').html(displayHtml);
+            }
+        });
+
+        $(".class-tombol").click(function() {
+            let Tugas = ($('#Tugas').val());
+            let type = $('#Status').val();
+            let displayHtml = Tugas;
+            if (type === 'Pending') {
+                $('#display').html(displayHtml);
+            }
+            if (type === 'Planning') {
+                $('#display2').html(displayHtml);
+            }
+            if (type === 'Design') {
+                $('#display3').html(displayHtml);
+            }
+            if (type === 'Development') {
+                $('#display4').html(displayHtml);
+            }
+            if (type === 'Testing') {
+                $('#display5').html(displayHtml);
+            }
+            if (type === 'Resolved') {
+                $('#display6').html(displayHtml);
+            }
+            
+           
+        });
+
+        
+
+        
+    });
+</script>
+
+
